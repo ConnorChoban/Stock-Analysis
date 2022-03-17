@@ -10,7 +10,17 @@ In 2017 we can see that all but one of the tickers realized gains, including DQ 
 
 For the original code we can see that the macro produced the results in the time below:
 
-For the refactored code we can see that the code was somewhat faster. 
+<img width="256" alt="2017 Original" src="https://user-images.githubusercontent.com/99847786/158745716-f4edfda2-f558-423f-ac74-4293cedad71e.png">
+
+<img width="256" alt="2018 Original" src="https://user-images.githubusercontent.com/99847786/158745704-cce0085b-5818-42b5-a98f-b31d5d5e7e22.png">
+
+
+For the refactored code we can see that the code was somewhat slower, likely due to the code being larger and looping additional tockers and variables.
+
+<img width="260" alt="2017 Timer Refactored" src="https://user-images.githubusercontent.com/99847786/158745733-403bf2f7-dfc1-4957-a62d-d025d68534ae.png">
+
+<img width="256" alt="2018 Timer Refactored" src="https://user-images.githubusercontent.com/99847786/158745744-704e5eb1-933b-4ed3-acfb-9ad57deee22f.png">
+
 
 
 
