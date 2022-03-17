@@ -21,8 +21,81 @@ For the refactored code we can see that the code was somewhat slower, likely due
 
 <img width="256" alt="2018 Timer Refactored" src="https://user-images.githubusercontent.com/99847786/158745744-704e5eb1-933b-4ed3-acfb-9ad57deee22f.png">
 
+By including the code below, we added several steps where we ran the macro through an array of new tickers, cells, as well as returning to the initial Stocks Analysis worksheet which likely lengthened the time it took to run the code. 
 
+'1a) Create a ticker Index
+    
+    TickerIndex = 0
+    
+    '1b) Create three output arrays
+    
+    Dim tickerVolumes(12) As Long
+    'Column 8
+    Dim TickerStartingPrices(12) As Single
+    'Column 3
+    Dim TickerEndingPrices(12) As Single
+    'Column 6
+    
+    
+    ''2a) Create a for loop to initialize the tickerVolumes to zero.
 
+    For i = 0 To 11
+    'Since the index begins at 0
+    
+        tickerVolumes(i) = 0
+        TickerStartingPrices(i) = 0
+        TickerEndingPrices(i) = 0
+        
+    Next i
+    
+        
+    ''2b) Loop over all the rows in the spreadsheet.
+    For i = 2 To RowCount
+    
+        '3a) Increase volume for current ticker
+    
+        tickerVolumes(TickerIndex) = tickerVolumes(TickerIndex) + Cells(i, 8).Value
+        
+        '3b) Check if the current row is the first row with the selected tickerIndex.
+        'If  Then
+            
+            If Cells(i - 1, 1).Value <> tickers(TickerIndex) And Cells(i, 1).Value = tickers(TickerIndex) Then
+            
+             TickerStartingPrices(TickerIndex) = Cells(i, 6).Value
+             
+             End If
+            
+        'End If
+        
+        '3c) check if the current row is the last row with the selected ticker
+         'If the next row’s ticker doesn’t match, increase the tickerIndex.
+        'If  Then
+            
+            If Cells(i + 1, 1).Value <> tickers(TickerIndex) And Cells(i, 1).Value = tickers(TickerIndex) Then
+            
+            TickerEndingPrices(TickerIndex) = Cells(i, 6).Value
+            
+            End If
+
+            '3d Increase the tickerIndex.
+            
+            If Cells(i + 1, 1).Value <> tickers(TickerIndex) And Cells(i, 1).Value = tickers(TickerIndex) Then
+            TickerIndex = TickerIndex + 1
+            
+            End If
+            
+        'End If
+    
+    Next i
+    
+    '4) Loop through your arrays to output the Ticker, Total Daily Volume, and Return.
+    For i = 0 To 11
+        
+        Worksheets("All Stocks Analysis").Activate
+        Cells(4 + i, 1).Value = tickers(i)
+        Cells(4 + i, 2).Value = tickerVolumes(i)
+        Cells(4 + i, 3).Value = TickerEndingPrices(i) / TickerStartingPrices(i) - 1
+        
 
 Summary
 
