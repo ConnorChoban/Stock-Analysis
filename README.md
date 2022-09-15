@@ -21,6 +21,7 @@ In the refactored code we can see that the code was somewhat slower, likely due 
 
 <img width="256" alt="2018 Timer Refactored" src="https://user-images.githubusercontent.com/99847786/158745744-704e5eb1-933b-4ed3-acfb-9ad57deee22f.png">
 
+
 By including the code below, we added several steps where we ran the macro through an array of new tickers, cells, as well as returning to the initial Stocks Analysis worksheet which likely lengthened the time it took to run the code. 
 
 '1a) Create a ticker Index
